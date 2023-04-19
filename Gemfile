@@ -14,6 +14,9 @@ gem "sqlite3", "~> 1.4"
 gem 'bcrypt', '~> 3.1.7'
 gem 'jwt'
 
+gem 'rack-cors', :require => 'rack/cors'
+
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 

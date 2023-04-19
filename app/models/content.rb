@@ -1,6 +1,14 @@
 class Content < ApplicationRecord
+  
   belongs_to :category
   belongs_to :user
 
-  self.inheritance_column = :content_type
+  has_many :comments,  dependent: :destroy
+  has_many :wishlists
+
+  validates :title, presence: true
+  validates :kind, inclusion: { in: ['video', 'audio', 'article/blog'] }
+  
+
+  # self.inheritance_column = :content_type
 end
