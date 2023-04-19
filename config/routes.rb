@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :wishlists
+  resources :subscriptions
+  resources :comments
   resources :contents
 
   resources :users
