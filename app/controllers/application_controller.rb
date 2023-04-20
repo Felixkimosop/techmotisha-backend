@@ -50,7 +50,7 @@ class ApplicationController < ActionController::API
      
       
       def authorized_user
-        render json: { message: 'Please log in as a user' }, status: :unauthorized unless logged_in? && @current_user.is_a?(User)
+        render json: { message: 'Please log in ' }, status: :unauthorized unless logged_in? && @current_user.is_a?(User)
       end
     
     

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_19_114012) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_20_085152) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -61,6 +61,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_114012) do
     t.string "profile_picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "age"
+    t.string "phone_number"
   end
 
   create_table "wishlists", force: :cascade do |t|
