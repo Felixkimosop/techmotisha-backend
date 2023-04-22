@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  skip_before_action :authorize, only: [:create, :index, :update]
 
   # GET /categories
   def index
@@ -44,6 +45,6 @@ class CategoriesController < ApplicationController
   private
      # Only allow a list of trusted parameters through.
     def category_params
-      params.require(:category).permit(:name)
+      params.permit(:name)
     end
 end
