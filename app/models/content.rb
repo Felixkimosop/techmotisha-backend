@@ -4,7 +4,7 @@ class Content < ApplicationRecord
   belongs_to :user
 
   has_many :comments,  dependent: :destroy
-  has_many :wishlists
+  has_many :wishlists,  dependent: :destroy
 
   validates :title, presence: true
   validates :kind, inclusion: { in: ['video', 'audio', 'article/blog'] }

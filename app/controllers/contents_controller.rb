@@ -1,4 +1,5 @@
 class ContentsController < ApplicationController
+  skip_before_action :authorize, only: [:create, :index, :update]
   # GET /contents
  def index
     contents = Content.all

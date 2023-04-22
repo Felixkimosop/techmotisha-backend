@@ -3,8 +3,10 @@ class SubscriptionsController < ApplicationController
 
   # GET /subscriptions or /subscriptions.json
   def index
-    @subscriptions = Subscription.all
+    subscriptions = Subscription.joins(:category).where(user_id: current_user.id).select("subscriptions.id, categories.name")
+    render json: { subscriptions: subscriptions.map{ |s| {id: s.id, category_name: s.name} } }
   end
+  
 
   # GET /subscriptions/1 or /subscriptions/1.json
   def show

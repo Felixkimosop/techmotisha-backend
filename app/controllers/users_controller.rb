@@ -49,11 +49,21 @@ class UsersController < ApplicationController
       render json: {"error": "user not found" }, status: :not_found
     end
   end
-  
 
+def deactivate
+  user = User.find_by(id: params[:id])
+  if user
+    new_status = params[:isactive] == 'false' ? false : true
+    user.update(isactive: new_status)
+    message = new_status ? "User activated successfully" : "User deactivated successfully"
+    render json: { "message": message }, status: :ok
+  else
+    render json: { "error": "User not found" }, status: :not_found
+  end
+end
   private
 
   def user_params
-    params.permit(:email, :password,:role, :name, :age, :phone_number, :profile_picture)
+    params.permit(:email, :password,:role, :name, :age, :phone_number, :profile_picture,:isactive)
   end
 end
