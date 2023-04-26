@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authorize, only: [:create, :index, :update]
+   skip_before_action :authorize, only: [:create, :index, :update]
 
   def index
     users = User.all
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 
   def update
     user = User.find_by(id: params[:id])
-  
+
     if user
       if user.update(user_params.except(:password))
         render json: user, status: :ok
