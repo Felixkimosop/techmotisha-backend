@@ -1,0 +1,15 @@
+
+[1mFrom:[0m /home/felix/Development/code/phase5/techmotisha-backend/motisha/app/mailers/sendgrid_mailer.rb:31 :
+
+    [1;34m26[0m:   [35menable_starttls_auto[0m: [1;36mtrue[0m
+    [1;34m27[0m: }
+    [1;34m28[0m: 
+    [1;34m29[0m: [1;34m# Send email via SMTP[0m
+    [1;34m30[0m: response = sg.client.mail._([31m[1;31m'[0m[31msend[1;31m'[0m[31m[0m).post([35mrequest_body[0m: mail.to_json, [35msmtpapi[0m: smtp_settings)
+ => [1;34m31[0m: binding.pry
+    [1;34m32[0m: 
+    [1;34m33[0m: puts [31m[1;31m'[0m[31mEmail sent[1;31m'[0m[31m[0m
+    [1;34m34[0m: 
+    [1;34m35[0m: 
+    [1;34m36[0m: 
+

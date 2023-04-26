@@ -1,5 +1,5 @@
 class SubscriptionsController < ApplicationController
-  before_action :set_subscription, only: %i[ show edit update destroy ]
+ 
 
   # GET /subscriptions or /subscriptions.json
   def index
@@ -7,6 +7,10 @@ class SubscriptionsController < ApplicationController
     render json: { subscriptions: subscriptions.map{ |s| {id: s.id, category_name: s.name} } }
   end
   
+  # def index
+  #   subs = Subscription.all
+  #   render json: subs, include: [:category]
+  # end
 
   # GET /subscriptions/1 or /subscriptions/1.json
   def show

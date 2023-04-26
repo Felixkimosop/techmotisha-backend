@@ -6,8 +6,12 @@ Rails.application.routes.draw do
   get 'profile', to: 'users#profile'
   patch 'edit', to: 'users#edit'
 patch 'deactivate/:id', to: 'users#deactivate'
-get "/subscriptions", to: "subscriptions#index"
+get "/subs", to: "subscriptions#index"
 get "/wishes", to: "wishlists#index"
+patch 'approve', to: 'contents#approve'
+get "/wishlists", to: "wishlists#show"
+
+
 
 
 

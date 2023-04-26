@@ -8,6 +8,8 @@ class Content < ApplicationRecord
 
   validates :title, presence: true
   validates :kind, inclusion: { in: ['video', 'audio', 'article/blog'] }
+  validates :is_approved, inclusion: { in: [true, false] }
+
   
 
   # self.inheritance_column = :content_type

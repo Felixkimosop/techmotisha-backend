@@ -13,6 +13,11 @@ gem "sprockets-rails"
 gem "sqlite3", "~> 1.4"
 gem 'bcrypt', '~> 3.1.7'
 gem 'jwt'
+gem "sendgrid-ruby"
+gem "pry"
+gem "active_model_serializers", "~> 0.10.12"
+gem "net-http"
+
 
 gem 'rack-cors', :require => 'rack/cors'
 

@@ -7,9 +7,11 @@ class UsersController < ApplicationController
   end
 
   def create
+    
     user = User.create(user_params)
 
     if user
+      SendgridMailer.signupmessage(user).deliver_now
       render json: user, status: :created
     else
       render json: {"error": "cannot be created" }, status: :not_acceptable
@@ -17,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def profile
-    render json: @current_user, include: [:contents,:wishlists,:subscriptions]
+    render json: current_user.wishlists.includes(:content)
   end
 
   def edit
@@ -61,6 +63,13 @@ def deactivate
     render json: { "error": "User not found" }, status: :not_found
   end
 end
+
+def subscriptions
+  user = current_user
+  subscriptions = user.subscriptions
+  render json: subscriptions
+end
+
   private
 
   def user_params
