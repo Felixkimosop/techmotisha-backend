@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  skip_before_action :authorize, only: [:create, :index, :update]
+ # skip_before_action :authorize, only: [:create, :index, :update]
 
   # GET /categories
   def index
