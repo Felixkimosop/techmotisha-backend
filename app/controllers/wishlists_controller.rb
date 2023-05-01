@@ -1,9 +1,10 @@
 class WishlistsController < ApplicationController
-  before_action :set_wishlist, only: %i[ show edit update destroy ]
+  # before_action :set_wishlist, only: %i[ show edit update destroy ]
 
   # ...
   def index
-    @wishlists = current_user.wishlists.includes(:content)
+    @wishlists = @current_user.wishlists.joins(:content).select('wishlists.*, contents.title as content_title')
+    render json: @wishlists
   end
   
   def show

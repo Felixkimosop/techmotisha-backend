@@ -47,8 +47,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_24_182344) do
 
   create_table "comments", force: :cascade do |t|
     t.text "body"
-    t.integer "content_id", null: false
     t.integer "user_id", null: false
+    t.integer "content_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["content_id"], name: "index_comments_on_content_id"
@@ -65,6 +65,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_24_182344) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_approved"
     t.index ["category_id"], name: "index_contents_on_category_id"
     t.index ["user_id"], name: "index_contents_on_user_id"
   end
@@ -127,7 +128,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_24_182344) do
   add_foreign_key "likes", "contents"
   add_foreign_key "likes", "users"
   add_foreign_key "replies", "comments"
-  add_foreign_key "subscriptions", "categories"
   add_foreign_key "subscriptions", "users"
   add_foreign_key "wishlists", "contents"
   add_foreign_key "wishlists", "users"

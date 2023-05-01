@@ -8,4 +8,8 @@ class User < ApplicationRecord
 
     validates :isactive, inclusion: { in: [true, false], message: "User is not active." }
 
+    def subscribed_categories
+        categories
+      end
+
 end

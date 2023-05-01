@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-   skip_before_action :authorize, only: [:create, :index, :update]
+  skip_before_action :authorize, only: [:create, :index, :update]
 
   def index
     users = User.all
@@ -7,9 +7,11 @@ class UsersController < ApplicationController
   end
 
   def create
+    
     user = User.create(user_params)
 
     if user
+      SendgridMailer.signupmessage(user).deliver_now
       render json: user, status: :created
     else
       render json: {"error": "cannot be created" }, status: :not_acceptable
@@ -17,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def profile
-    render json: @current_user, include: [:contents,:wishlists,:subscriptions]
+    render json: @current_user, include: [:contents]
   end
 
   def edit
@@ -38,7 +40,7 @@ class UsersController < ApplicationController
 
   def update
     user = User.find_by(id: params[:id])
-
+  
     if user
       if user.update(user_params.except(:password))
         render json: user, status: :ok
@@ -60,6 +62,12 @@ def deactivate
   else
     render json: { "error": "User not found" }, status: :not_found
   end
+end
+
+def subscriptions
+  user = current_user
+  subscriptions = user.subscriptions
+  render json: subscriptions
 end
   private
 
