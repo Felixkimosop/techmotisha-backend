@@ -11,6 +11,16 @@ gem "sprockets-rails"
 
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"
+gem 'bcrypt', '~> 3.1.7'
+gem 'jwt'
+gem "sendgrid-ruby"
+gem "pry"
+gem "active_model_serializers", "~> 0.10.12"
+gem "net-http"
+
+
+gem 'rack-cors', :require => 'rack/cors'
+
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
@@ -61,3 +71,7 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "jsonapi-serializer", "~> 2.2"
+
+
