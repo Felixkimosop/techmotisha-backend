@@ -3,7 +3,7 @@ class SubscriptionsController < ApplicationController
 
   # GET /subscriptions or /subscriptions.json
   def index
-    subscriptions = Subscription.joins(:category).where(user_id: current_user.id).select("subscriptions.id, categories.name")
+    subscriptions = Subscription.joins(:category).where(user_id: @current_user.id).select("subscriptions.id, categories.name")
     render json: { subscriptions: subscriptions.map{ |s| {id: s.id, category_name: s.name} } }
   end
   
@@ -27,17 +27,15 @@ class SubscriptionsController < ApplicationController
 
   # POST /subscriptions or /subscriptions.json
   def create
-    @subscription = Subscription.new(subscription_params)
+    subscription = Subscription.create(subscription_params)
 
-    respond_to do |format|
-      if @subscription.save
-        format.html { redirect_to subscription_url(@subscription), notice: "Subscription was successfully created." }
-        format.json { render :show, status: :created, location: @subscription }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @subscription.errors, status: :unprocessable_entity }
-      end
+    if subscription
+      render json: subscription
+    else
+      render json: { "error": "Not created" }
     end
+
+    
   end
 
   # PATCH/PUT /subscriptions/1 or /subscriptions/1.json
@@ -71,6 +69,6 @@ class SubscriptionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def subscription_params
-      params.require(:subscription).permit(:category_id, :user_id)
+      params.permit(:category_id, :user_id)
     end
 end

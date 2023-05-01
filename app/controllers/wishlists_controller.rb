@@ -3,7 +3,7 @@ class WishlistsController < ApplicationController
 
   # ...
   def index
-    @wishlists = current_user.wishlists.joins(:content).select('wishlists.*, contents.title as content_title')
+    @wishlists = @current_user.wishlists.joins(:content).select('wishlists.*, contents.title as content_title')
     render json: @wishlists
   end
   

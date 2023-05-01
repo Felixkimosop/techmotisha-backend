@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def profile
-    render json: current_user.wishlists.includes(:content)
+    render json: @current_user, include: [:contents]
   end
 
   def edit
@@ -69,7 +69,6 @@ def subscriptions
   subscriptions = user.subscriptions
   render json: subscriptions
 end
-
   private
 
   def user_params

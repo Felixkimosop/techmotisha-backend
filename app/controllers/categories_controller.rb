@@ -1,16 +1,16 @@
 class CategoriesController < ApplicationController
-  skip_before_action :authorize, only: [:create, :index, :update]
+ # skip_before_action :authorize, only: [:create, :index, :update]
 
   # GET /categories
   def index
      categories = Category.all
 
-    render json:  categories
+    render json:  categories, include: [:contents]
   end
   # GET /categories/:id
   def show
     category = Category.find(params[:id])
-    render json: category
+    render json: category, include: [:contents]
   end
 
 
